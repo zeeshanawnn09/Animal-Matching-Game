@@ -34,7 +34,7 @@ namespace MatchGame
             if (matchesFound == 8)
             {
                 timer.Stop();
-                timeTextBlock.Text = timeTextBlock.Text + " - Play again?";
+                timeTextBlock.Text = timeTextBlock.Text + "  PLAY AGAIN";
             }
         }
 
@@ -42,9 +42,9 @@ namespace MatchGame
         {
             List<string> animalEmoji = new List<string>()
             {
-                "🐼", "🐼",
+                "💩", "💩",
                 "🐶", "🐶",
-                "🐟", "🐟",
+                "🦉", "🦉",
                 "🦋", "🦋",
                 "🦆", "🦆",
                 "🐴", "🐴",
@@ -77,18 +77,24 @@ namespace MatchGame
         {
             TextBlock textBlock = sender as TextBlock;
 
+            //When user selects one animal it becomes hidden until the match becomes false
+            //After that findingMatch value is returned to TRUE
             if (findingMatch == false)
             {
                 textBlock.Visibility = Visibility.Hidden;
                 lastTextBlockClicked = textBlock;
                 findingMatch = true;
             }
+            //When the second animal matches the first the bost animals are hidden
+            //After that findingMatch value is returned to FALSE
             else if (textBlock.Text == lastTextBlockClicked.Text)
                 {
                     matchesFound++;
                     textBlock.Visibility = Visibility.Hidden;
                     findingMatch = false;
                 }
+            //When the second animal doesn't match the first animal, the 1st & 2nd animal become visible
+            //After that findingMatch value is returned to FALSE
             else
             {
                 lastTextBlockClicked.Visibility = Visibility.Visible;
